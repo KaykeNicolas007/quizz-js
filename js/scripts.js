@@ -108,11 +108,29 @@ function createQuestion(i) {
     answerBox.appendChild(answerTemplate);
 
     answerTemplate.addEventListener("click", function () {
-      console.log(this);
+      checkAnswer(this);
     });
   });
 
   actualQuestion++;
+}
+
+function checkAnswer(btn) {
+  const buttons = answerBox.querySelectorAll("button");
+
+  buttons.forEach(function (button) {
+    if (button.getAttribute("correct-answer") === "true") {
+      button.classList.add("correct-answer");
+
+      if (button === btn) {
+        points++;
+      }
+    } else {
+      button.classList.add("wrong-answer");
+    }
+  });
+
+  console.log(points);
 }
 
 init();
