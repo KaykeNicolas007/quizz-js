@@ -130,7 +130,16 @@ function checkAnswer(btn) {
     }
   });
 
-  console.log(points);
+  nextQuestion();
+}
+
+function nextQuestion() {
+  setTimeout(function () {
+    if (actualQuestion >= questions.length) {
+    }
+
+    createQuestion(actualQuestion);
+  }, 1500);
 }
 
 init();
