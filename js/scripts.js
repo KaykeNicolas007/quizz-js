@@ -136,10 +136,31 @@ function checkAnswer(btn) {
 function nextQuestion() {
   setTimeout(function () {
     if (actualQuestion >= questions.length) {
+      showSuccessMessage();
+      return;
     }
 
     createQuestion(actualQuestion);
   }, 1500);
+}
+
+function showSuccessMessage() {
+  hideOrShowQuizz();
+
+  const score = ((points / questions.length) * 100).toFixed(2);
+
+  const displayScore = document.querySelector("#display-score");
+  const correctAnswers = document.querySelector("#correct-answers");
+  const questionsQty = document.querySelector("#questions-qty");
+
+  displayScore.textContent = score.toString() + "%";
+  correctAnswers.textContent = points;
+  questionsQty.textContent = questions.length;
+}
+
+function hideOrShowQuizz() {
+  quizzContainer.classList.toggle("hide");
+  scoreContainer.classList.toggle("hide");
 }
 
 init();
